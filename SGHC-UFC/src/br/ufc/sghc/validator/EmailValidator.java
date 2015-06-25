@@ -27,8 +27,7 @@ public class EmailValidator implements Validator{
 			}
 			
 		}catch (PersistenceException e) {
-			  throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-		                "E-mail já cadastrado!", null));
+			// Captura a exceção de nenhum usuário encontrado
 		}
 	}
 	

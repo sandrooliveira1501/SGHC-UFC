@@ -29,9 +29,6 @@ public class MatriculaValidator implements Validator{
 		}catch(NumberFormatException ex){
 			  throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
 		                "Formato de matrícula inválido!", null));
-		}catch (PersistenceException e) {
-			  throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-		                "Matrícula já cadastrada!", null));
 		}
 	}
 	
