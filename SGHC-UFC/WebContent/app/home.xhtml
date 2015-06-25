@@ -105,6 +105,17 @@
 
 		<a class="btn btn-primary" id="button_adicionar_atividade">Adicionar
 			Atividade</a>
+			
+		<hr />	
+		<h:form>
+			
+			<h:commandLink rendered="#{!apenasSubmetidas}" class="btn btn-primary"
+					value="Calcular apenas submetidas" action="#{pesquisaBean.calcularApenasSubmetidas}" />
+			
+			<h:commandLink rendered="#{apenasSubmetidas}" class="btn btn-primary"
+					value="Calcular todas atividades" action="#{pesquisaBean.calcularTodasAtividades}" />
+			
+		</h:form>	
 
 		<p:dialog id="dialog_adicionar_atividade" header="Adicionar Atividade"
 			widgetVar="dlg_adicionar_atividade" resizable="false">

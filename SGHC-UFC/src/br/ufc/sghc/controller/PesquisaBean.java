@@ -28,7 +28,8 @@ public class PesquisaBean {
 	private Categoria categoria;
 	private Atividade atividade;
 	private boolean search = false;
-
+	private boolean apenasSubmetidas = false;
+	
 	public PesquisaBean() {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(false);
@@ -134,25 +135,32 @@ public class PesquisaBean {
 				.getExternalContext().getSession(false);
 
 		int totalHoras = 0;
-
+		boolean apenasSubmetidas = false;
+		Object submetidasSession = session.getAttribute("apenasSubmetidas");
+		if(submetidasSession != null){
+			apenasSubmetidas = (Boolean) submetidasSession;			
+		}
+		
 		Map<Categoria, Integer> horasCategorias = new LinkedHashMap<Categoria, Integer>();
 		for (Atividade atividade : this.atividades) {
-			Categoria categoria = atividade.getCategoria();
-			Integer qtdHoras = horasCategorias.get(categoria);
-			if (qtdHoras == null) {
-				qtdHoras = 0;
-			} else {
-				totalHoras -= qtdHoras;
+			if(!apenasSubmetidas || atividade.isComputada()){
+			
+				Categoria categoria = atividade.getCategoria();
+				Integer qtdHoras = horasCategorias.get(categoria);
+				if (qtdHoras == null) {
+					qtdHoras = 0;
+				} else {
+					totalHoras -= qtdHoras;
+				}
+	
+				qtdHoras = qtdHoras + atividade.getHoras();
+				if (qtdHoras > categoria.getMaximoHoras()) {
+					qtdHoras = categoria.getMaximoHoras();
+				}
+	
+				horasCategorias.put(categoria, qtdHoras);
+				totalHoras += qtdHoras;
 			}
-
-			qtdHoras = qtdHoras + atividade.getHoras();
-			if (qtdHoras > categoria.getMaximoHoras()) {
-				qtdHoras = categoria.getMaximoHoras();
-			}
-
-			horasCategorias.put(categoria, qtdHoras);
-			totalHoras += qtdHoras;
-
 		}
 
 		return totalHoras;
@@ -164,6 +172,7 @@ public class PesquisaBean {
 
 		Aluno aluno = (Aluno) session.getAttribute("usuario");
 
+		
 		if (search == false) {
 			return (this.getTotalHoras() * 100.00)
 					/ aluno.getCurso().getQuantidadeHoras();
@@ -186,6 +195,24 @@ public class PesquisaBean {
 		this.search = false;
 
 		return "?faces-redirect=true";
+	}
+	
+	public String calcularApenasSubmetidas(){
+	
+		HttpSession session = 	(HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		session.setAttribute("apenasSubmetidas", true);
+		
+		return "";
+	}
+	
+	public String calcularTodasAtividades(){
+		
+		HttpSession session = 	(HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		session.setAttribute("apenasSubmetidas", false);
+		
+		return "";
 	}
 
 }

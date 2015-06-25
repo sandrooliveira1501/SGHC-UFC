@@ -44,6 +44,7 @@ public class LoginBean implements Serializable{
 			HttpSession session = (HttpSession) FacesContext
 					.getCurrentInstance().getExternalContext().getSession(true);
 			session.setAttribute("usuario", aluno);
+			session.setAttribute("apenasSubmetidas", false);
 			return "/app/home.xhtml?faces-redirect=true";
 		} catch (ErroLoginException ex) {
 			String mensagem = "Usuário ou senha inválidos";
