@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<meta name="description"
+		content="Sistema de Gestão de Horas Complementares" />
+	<meta name="author" content="Alexsandro" />
+
+	<!-- Bootstrap -->
+	<h:outputStylesheet name="bootstrap.css" library="css" />
+	<!-- css do login -->
+	<h:outputStylesheet name="signin.css" library="css" />
+
+	<title>Login</title>
+</h:head>
+<h:body>
+
+	<div class="container">
+
+		<p:growl id="growl" showDetail="false" sticky="true" />
+		<h:form class="form-signin">
+			<h2 class="form-signin-heading">SGHC - UFC</h2>
+
+			<h:outputLabel value="Matrícula" for="login" />
+			<h:inputText class="form-control"
+				value="#{loginBean.aluno.matricula}" id="login" required="true"
+				requiredMessage="Insira sua matrícula"
+				converterMessage="A matrícula contém apenas números!">
+			</h:inputText>
+			<h:outputLabel value="Senha" for="senha" />
+			<h:inputSecret class="form-control" value="#{loginBean.aluno.senha}"
+				id="senha" required="true" requiredMessage="Insira sua senha" />
+			<hr />
+			<h:commandButton class="btn btn-lg btn-primary btn-block"
+				value="Entrar" action="#{loginBean.realizarLogin}" />
+			Não possui cadastro? <a href="#" onclick="dlg.show()">clique
+				aqui</a>
+
+		</h:form>
+
+		<p:dialog id="dialog" header="Login" widgetVar="dlg" resizable="false">
+
+			<h:form>
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Nome*" for="nome" />
+					<h:inputText class="form-control" value="#{alunoBean.aluno.nome}"
+						id="nome" required="true" requiredMessage="Insira seu Nome" />
+					<h:outputLabel value="Matricula*" for="matricula" />
+					<h:inputText class="form-control"
+						value="#{alunoBean.aluno.matricula}" id="matricula"
+						converterMessage="A matrícula contém apenas números!"
+						required="true" requiredMessage="Insira sua matrícula">
+						<f:validator validatorId="matriculaValidator" />
+					</h:inputText>
+					<h:outputLabel value="E-mail*" for="email" />
+					<h:inputText class="form-control" value="#{alunoBean.aluno.email}"
+						id="email" required="true" requiredMessage="Insira seu e-mail"
+						validatorMessage="E-mail inserido não é válido, insira outro e-mail!">
+						<f:validator validatorId="emailValidator" />
+						<f:validateRegex
+							pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+					</h:inputText>
+
+					<h:outputLabel for="pwd1" value="Senha: *" />
+					<p:password validatorMessage="Senhas não correspondem" id="pwd1"
+						value="#{alunoBean.aluno.senha}" match="pwd2" label="Password 1"
+						required="true" requiredMessage="Insira a senha" />
+					<h:outputLabel for="pwd2" value="Confirmação de senha *" />
+					<p:password requiredMessage="Insira a confirmação de senha"
+						id="pwd2" value="#{alunoBean.aluno.senha}" label="Password 2"
+						required="true" />
+					<h:outputLabel value="Curso*" for="curso" />
+					<p:selectOneMenu value="#{alunoBean.aluno.curso}" id="curso"
+						converter="cursoConverter">
+						<f:selectItems value="#{alunoBean.cursos}" var="curso"
+							itemLabel="#{curso.nome}" itemValue="#{curso}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<h:commandButton class="btn btn-lg btn-primary btn-block"
+					value="Confimar" action="#{alunoBean.adicionaAluno}" />
+
+			</h:form>
+
+		</p:dialog>
+
+	</div>
+
+</h:body>
+</html>

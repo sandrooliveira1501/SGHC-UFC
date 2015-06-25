@@ -1,0 +1,53 @@
+<ui:composition template="/WEB-INF/template_admin/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="main">
+		<p:growl id="growl" showDetail="false" sticky="true" />
+		<div class="panel panel-default">
+			<div class="panel-heading">Categorias de <span class="nome_curso">#{categoriaCursoBean.curso.nome}</span></div>
+
+			<c:if test="#{not empty categoriaCursoBean.categorias}">
+				<h:dataTable class="table" var="categoria"
+					value="#{categoriaCursoBean.categorias}">
+	
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+	    				#{categoria.nome}
+	    		</h:column>
+	
+					<h:column>
+						<f:facet name="header">Quantidade Máxima de Horas</f:facet>
+	    				#{categoria.maximoHoras}
+	    		</h:column>
+	
+					<h:column>
+						<f:facet name="header">Remover</f:facet>
+	
+						<h:form>
+	
+							<h:commandLink action="#{categoriaCursoBean.removerCategoria}" value=""
+								class="glyphicon glyphicon-remove btn_remover">
+								<f:param value="#{categoria.id}" name="idCategoria" />
+								<f:param value="#{categoriaCursoBean.curso.id}" name="idCurso" />
+							</h:commandLink>
+	
+						</h:form>
+	
+					</h:column>
+	
+	
+				</h:dataTable>
+			</c:if>
+
+			<c:if test="#{empty categoriaCursoBean.categorias}">
+				<h6>Nenhuma categoria cadastrada</h6>
+			</c:if>
+		</div>
+
+	</ui:define>
+</ui:composition>

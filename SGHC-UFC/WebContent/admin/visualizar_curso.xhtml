@@ -1,0 +1,38 @@
+<ui:composition template="/WEB-INF/template_admin/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="main">
+		<p:growl id="growl" showDetail="false" sticky="true" />
+		<div class="panel panel-default">
+			<div class="panel-heading">Editar Curso</div>
+
+			<h:form id="form_adicionar_curso">
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Nome" for="nome" />
+					<h:inputText class="form-control" value="#{cursoBean.curso.nome}"
+						id="nome" required="true"
+						requiredMessage="Insira o nome do curso!" />
+					<h:outputLabel value="Horas Requeridas*" for="horas" />
+					<h:inputText class="form-control"
+						value="#{cursoBean.curso.quantidadeHoras}" id="horas"
+						required="true"
+						requiredMessage="Insira a quantidade de horas de atividades complementares"
+						converterMessage="Valor inválido para o campo 'Horas'!" />
+				</h:panelGrid>
+				<h:inputHidden value="#{cursoBean.curso.id}" />	
+
+				<h:commandButton class="btn btn-primary"
+					value="Confirmar" action="#{cursoBean.atualizarCurso}" />
+
+			</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,77 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="main">
+		<p:growl id="growl" showDetail="false" sticky="true" />
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">Atualize seu Perfil</h3>
+			</div>
+			<div class="panel-body">
+				<h:form id="atualizar_perfil">
+
+					<h:inputHidden value="#{alunoBean.aluno.matricula}" />
+					<h:panelGrid columns="2">
+
+						<h:outputLabel value="Nome" for="nome" />
+						<h:inputText class="form-control" value="#{alunoBean.aluno.nome}"
+							id="nome" required="true" requiredMessage="Insira seu nome" />
+						<h:outputLabel value="Matricula" for="matricula" />
+						<h:inputText class="form-control"
+							value="#{alunoBean.aluno.matricula}" id="matricula"
+							disabled="true" />
+						<h:outputLabel value="E-mail" for="email" />
+						<h:inputText class="form-control" value="#{alunoBean.aluno.email}"
+							id="email" required="true" requiredMessage="Insira seu e-mail"
+							validatorMessage="E-mail inserido não é válido, insira outro e-mail!">
+							<f:validator validatorId="emailValidator" />
+							<f:validateRegex
+								pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+						</h:inputText>
+						<h:outputLabel value="Curso" for="curso" />
+						<p:selectOneMenu value="#{alunoBean.aluno.curso}" id="curso"
+							converter="cursoConverter">
+							<f:selectItems value="#{alunoBean.cursos}" var="curso"
+								itemLabel="#{curso.nome}" itemValue="#{curso}" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<hr />
+					<h:commandButton class="btn btn-lg btn-primary btn-block"
+						value="Confimar" action="#{alunoBean.atualizaPerfil}" />
+					<a id="alterar_senha" href="#">Alterar Senha</a>
+
+				</h:form>
+			</div>
+		</div>
+
+		<p:dialog id="dialog_alterar_senha" width="30%" header="Alterar Senha"
+			widgetVar="dlg_alterar_senha" resizable="false">
+
+			<h:form id="form_alterar_senha">
+
+				<h:outputLabel class="form-control" value="Senha antiga"
+					for="antiga" />
+				<h:inputSecret required="true"
+					requiredMessage="Preencha o campo senha antiga"
+					class="form-control" value="#{alunoBean.senhaAntiga}" id="antiga" />
+
+				<h:outputLabel class="form-control" value="Nova senha" for="nova" />
+				<h:inputSecret required="true"
+					requiredMessage="Preencha o campo nova senha" class="form-control"
+					value="#{alunoBean.novaSenha}" id="nova" />
+				<hr />
+				<h:commandButton class="btn btn-lg btn-primary btn-block"
+					value="Confirmar" action="#{alunoBean.atualizaSenha}" />
+
+			</h:form>
+
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>
+

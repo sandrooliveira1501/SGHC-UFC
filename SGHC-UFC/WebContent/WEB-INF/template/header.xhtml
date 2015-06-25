@@ -1,0 +1,18 @@
+
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<div class="masthead">
+		<h:form>
+			<h3 class="text-muted">SGHC UFC</h3>
+			<ul class="nav nav-justified">
+				<li><h:link value="Início" outcome="/app/home" /></li>
+				<li><h:link value="Perfil" outcome="/app/perfil" /></li>
+				<li><h:link value="Arquivos" outcome="/app/arquivos" /></li>
+				<li><h:commandLink value="Sair"
+						action="#{loginBean.realizarLogout}" /></li>
+			</ul>
+		</h:form>
+	</div>
+</ui:composition>

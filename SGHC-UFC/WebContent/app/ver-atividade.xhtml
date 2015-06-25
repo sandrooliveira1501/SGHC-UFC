@@ -1,0 +1,66 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="main">
+		<p:growl id="growl" showDetail="false" sticky="true" />
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Atividade</h3>
+			</div>
+
+			<h:form id="form_editar_atividade">
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Descrição*" for="descricao" />
+					<p:inplace>
+						<h:inputTextarea class="form-control"
+							value="#{atividadeBean.atividade.descricao}" id="descricao"
+							required="true" requiredMessage="Insira uma descrição!" />
+					</p:inplace>
+					<h:outputLabel value="Horas*" for="horas" />
+					<p:inplace>
+						<h:inputText class="form-control"
+							value="#{atividadeBean.atividade.horas}" id="horas"
+							required="true" requiredMessage="Insira a quantidade de horas"
+							converterMessage="Valor inválido para o campo 'Horas'!" />
+					</p:inplace>
+
+					<h:outputLabel value="Data da Atividade*" for="data" />
+					<p:inplace>
+						<p:inputMask mask="99/99/9999" id="data"
+							value="#{atividadeBean.atividade.dataAtividade}" required="true"
+							requiredMessage="Insira a data da atividade" converterMessage="Data inválida">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</p:inputMask>
+					</p:inplace>
+					<h:outputLabel value="Computada*" for="computada" />
+					<p:selectBooleanButton id="computada"
+						value="#{atividadeBean.atividade.computada}" onLabel="Sim"
+						offLabel="Não" />
+					<h:outputLabel value="Categoria*" for="categoria" />
+					<p:selectOneMenu value="#{atividadeBean.atividade.categoria}"
+						id="categoria" converter="categoriaConverter">
+						<f:selectItems value="#{atividadeBean.categorias}" var="categoria"
+							itemLabel="#{categoria.nome}" itemValue="#{categoria}" />
+					</p:selectOneMenu>
+
+				</h:panelGrid>
+				<span class="label label-default">Obs: clique nos campos para
+					abrir a edição</span>
+				<h:inputHidden value="#{atividadeBean.atividade.id}" />
+				<hr />
+				<h:commandButton class="btn btn-lg btn-primary btn-block"
+					value="Confimar" action="#{atividadeBean.atualizaAtividade}" />
+
+			</h:form>
+
+		</div>
+
+	</ui:define>
+</ui:composition>

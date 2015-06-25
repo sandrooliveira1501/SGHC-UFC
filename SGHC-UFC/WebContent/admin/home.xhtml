@@ -1,0 +1,123 @@
+<ui:composition template="/WEB-INF/template_admin/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="main">
+		<p:growl id="growl" showDetail="false" sticky="true" />
+		<div class="panel panel-default">
+			<div class="panel-heading">Cursos</div>
+
+			<c:if test="#{not empty cursoBean.cursos}">
+
+				<h:dataTable class="table" var="curso" value="#{cursoBean.cursos}">
+
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+    				#{curso.nome}
+    				</h:column>
+
+					<h:column>
+						<f:facet name="header">Quantidade de Horas</f:facet>
+    				#{curso.quantidadeHoras}
+    				</h:column>
+
+					<h:column>
+						<f:facet name="header">Remover</f:facet>
+
+						<h:form>
+
+							<h:commandLink action="#{cursoBean.removerCurso}" value=""
+								class="glyphicon glyphicon-remove btn_remover">
+								<f:param value="#{curso.id}" name="idCurso" />
+							</h:commandLink>
+
+						</h:form>
+
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Adicionar Categorias</f:facet>
+
+						<h:form>
+
+							<h:commandLink action="#{categoriaCursoBean.prepararCategorias}"
+								class="glyphicon glyphicon-plus">
+								<f:param value="#{curso.id}" name="idCurso" />
+							</h:commandLink>
+
+						</h:form>
+
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Visualizar Categorias</f:facet>
+
+						<h:form>
+
+							<h:commandLink action="#{categoriaCursoBean.visualizarCategorias}"
+								class="glyphicon glyphicon-search">
+								<f:param value="#{curso.id}" name="idCurso" />
+							</h:commandLink>
+
+						</h:form>
+
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Editar</f:facet>
+
+						<h:form>
+
+							<h:commandLink action="#{cursoBean.visualizarCurso}"
+								class="glyphicon glyphicon-pencil">
+								<f:param value="#{curso.id}" name="idCurso" />
+							</h:commandLink>
+
+						</h:form>
+
+					</h:column>
+				</h:dataTable>
+
+			</c:if>
+			
+			<c:if test="#{empty cursoBean.cursos}">
+				<h6>Nenhum curso cadastrado</h6>
+			</c:if>
+
+		</div>
+
+		<a class="btn btn-primary" id="button_adicionar_curso">Adicionar
+			Curso</a>
+
+		<p:dialog id="dialog_adicionar_curso" header="Adicionar Curso"
+			widgetVar="dlg_adicionar_curso" resizable="false">
+
+			<h:form id="form_adicionar_curso">
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Nome" for="nome" />
+					<h:inputText class="form-control" value="#{cursoBean.curso.nome}"
+						id="nome" required="true"
+						requiredMessage="Insira o nome do curso!" />
+					<h:outputLabel value="Horas Requeridas*" for="horas" />
+					<h:inputText class="form-control"
+						value="#{cursoBean.curso.quantidadeHoras}" id="horas"
+						required="true"
+						requiredMessage="Insira a quantidade de horas de atividades complementares"
+						converterMessage="Valor inválido para o campo 'Horas'!" />
+				</h:panelGrid>
+
+				<h:commandButton class="btn btn-lg btn-primary btn-block"
+					value="Confirmar" action="#{cursoBean.adicionarCurso}" />
+
+			</h:form>
+
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>

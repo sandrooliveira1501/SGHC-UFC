@@ -1,0 +1,48 @@
+<ui:composition template="/WEB-INF/template_admin/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="main">
+		<p:growl id="growl" showDetail="false" sticky="true" />
+		<div class="panel panel-default">
+			<div class="panel-heading">Categorias</div>
+
+			<hr />
+			<h3>
+				Selecione as Categorias de Atividades de <span class="nome_curso">#{categoriaCursoBean.curso.nome}</span>
+			</h3>
+			<c:if test="#{empty categoriaCursoBean.categoriasDisponiveis}">
+				Este curso possui todas as categorias cadastradas
+			</c:if>
+			<c:if test="#{not empty categoriaCursoBean.categoriasDisponiveis}">
+				<h:form>
+					<h:panelGroup layout="block" styleClass="selection">
+
+						<h:selectManyCheckbox layout="pageDirection" id="categorias"
+							value="#{categoriaCursoBean.categorias}"
+							converter="categoriaConverter" var="categoria" >
+
+							<f:selectItems
+								value="#{categoriaCursoBean.categoriasDisponiveis}"
+								var="categoria"
+								itemLabel="#{categoria.nome} (#{categoria.maximoHoras} Horas)"
+								itemValue="#{categoria}"
+								selected="false" />
+
+						</h:selectManyCheckbox>
+					</h:panelGroup>
+					<hr />
+					<h:commandButton class="btn btn-primary" value="Adicionar"
+						action="#{categoriaCursoBean.adicionarCategorias}">
+						<f:param name="idCurso" value="#{categoriaCursoBean.curso.id}"></f:param>
+					</h:commandButton>
+				</h:form>
+			</c:if>
+		</div>
+
+	</ui:define>
+</ui:composition>

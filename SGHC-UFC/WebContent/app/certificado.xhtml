@@ -1,0 +1,34 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="main">
+
+		<p:messages severity="info" escape="false" showDetail="true"
+			autoUpdate="true" closable="true" />
+		<h:form rendered="#{flash.certificadoExistente}">
+			<label>Certificado : <h:commandLink target="_blank" value="#{flash.descricaoAtividade}" action="#{arquivoBean.visualizarArquivo}" >
+							<f:param value="#{flash.idAtividade}" name="idAtividade" />
+			</h:commandLink></label>	
+		</h:form>	
+		
+		<h:outputText rendered="#{flash.certificadoExistente == false}" 
+		value="Não existe certificado para esta atividade!" />
+		<hr />
+		
+		<span class="label label-default">Obs: adicione o arquivo e clique no link de upload </span>
+		<h:form enctype="multipart/form-data">
+			<p:fileUpload fileUploadListener="#{arquivoBean.doUpload}"
+				showButtons="false" label="Procurar..." auto="false"
+				allowTypes="/(\.|\/)(pdf)$/"  sizeLimit="3145728" />
+			<h:commandButton class="btn btn-primary" value="Confirmar"
+				action="#{arquivoBean.adicionarArquivo}" >
+				<f:param value="#{flash.idAtividade}" name="idAtividade" />	
+			</h:commandButton>
+		</h:form>
+		<span class="label label-default">Aceitos somente arquivos menores ou iguais a 3MB e no formato pdf</span>
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,145 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+	<ui:define name="pesquisa">
+		<h:form id="form_pesquisa">
+
+			<h:panelGrid columns="3" cellpadding="5">
+				
+				<h:selectOneMenu class="form-control" value="#{pesquisaBean.categoria}" id="categoria"
+					converter="categoriaConverter">
+					<f:selectItems value="#{atividadeBean.categorias}" var="categoria"
+						itemLabel="#{categoria.nome}" itemValue="#{categoria}" />
+				</h:selectOneMenu>
+				
+				<h:commandLink action="#{pesquisaBean.pesquisarPorCategoria}"
+					class="glyphicon glyphicon-search" />
+				
+				<c:if test="#{pesquisaBean.search}">
+					<h:commandButton value="Limpar Pesquisa" action="#{pesquisaBean.limparPesquisa}"
+						class="btn btn-info" />
+				</c:if>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="main">
+		<p:growl id="growl" showDetail="false" sticky="true" />
+	
+		<c:if test="#{not empty pesquisaBean.atividades}">
+			<p:dataTable id="tabela-horas" value="#{pesquisaBean.atividades}"
+				var="atividade" paginator="true" rows="5"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15"
+				emptyMessage="Sem atividades cadastradas">
+
+				<p:column headerText="Descrição">
+					<h:outputText value="#{atividade}" />
+				</p:column>
+				<p:column headerText="Horas">
+					<h:outputText value="#{atividade.horas}" />
+				</p:column>
+				<p:column headerText="Remover">
+					<h:form>
+						<h:commandLink action="#{pesquisaBean.removerAtividade}"
+							class="glyphicon glyphicon-remove btn_remover">
+							<f:param value="#{atividade.id}" name="idAtividade" />
+						</h:commandLink>
+					</h:form>
+				</p:column>
+
+				<p:column headerText="Detalhes">
+					<h:form>
+						<h:commandLink action="#{atividadeBean.verAtividade}"
+							class="glyphicon glyphicon-search" title="Edite informações">
+							<f:param value="#{atividade.id}" name="idAtividade" />
+						</h:commandLink>
+					</h:form>
+				</p:column>
+
+				<p:column headerText="Certificado">
+					<h:form>
+						<h:commandLink action="#{arquivoBean.prepararUpload}"
+							class="glyphicon glyphicon-saved" title="Adicione certificados">
+							<f:param value="#{atividade.id}" name="idAtividade" />
+						</h:commandLink>
+					</h:form>
+				</p:column>
+
+			</p:dataTable>
+			<p:progressBar id="barraHoras" value="#{pesquisaBean.porcentagemHoras}"
+				labelTemplate="#{pesquisaBean.totalHoras} horas" displayOnly="true" />
+
+		</c:if>
+
+		<c:if test="#{empty pesquisaBean.atividades}">
+			<h6>Nenhuma atividade cadastrada</h6>
+		</c:if>
+		<br />
+		
+		<c:if test="#{!pesquisaBean.search}">
+			<p>Você já alcançou #{pesquisaBean.totalHoras} horas de um total de
+				#{alunoBean.aluno.curso.quantidadeHoras} horas requeridos pelo seu
+				curso.</p>
+		</c:if>
+		
+		<c:if test="#{pesquisaBean.search}">
+			<p>Você já alcançou #{pesquisaBean.totalHoras} horas de um total de
+				#{pesquisaBean.categoria.maximoHoras} horas requeridas na categoria 
+				<span class="nome_categoria">#{pesquisaBean.categoria.nome}</span>.</p>
+		</c:if>
+		
+		<hr />
+
+		<a class="btn btn-primary" id="button_adicionar_atividade">Adicionar
+			Atividade</a>
+
+		<p:dialog id="dialog_adicionar_atividade" header="Adicionar Atividade"
+			widgetVar="dlg_adicionar_atividade" resizable="false">
+
+			<h:form id="form_adicionar_atividade">
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Descrição*" for="descricao" />
+					<h:inputTextarea class="form-control"
+						value="#{atividadeBean.atividade.descricao}" id="descricao"
+						required="true" requiredMessage="Insira uma descrição!" />
+					<h:outputLabel value="Horas*" for="horas" />
+					<h:inputText class="form-control"
+						value="#{atividadeBean.atividade.horas}" id="horas"
+						required="true" requiredMessage="Insira a quantidade de horas"
+						converterMessage="Valor inválido para o campo 'Horas'!" />
+					<h:outputLabel value="Data da Atividade*" for="data" />
+					<p:inputMask mask="99/99/9999" id="data"
+						value="#{atividadeBean.atividade.dataAtividade}" required="true"
+						requiredMessage="Insira a data da atividade" converterMessage="Data inválida">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputMask>
+					<h:outputLabel value="Computada*" for="computada" />
+					<p:selectBooleanButton id="computada"
+						value="#{atividadeBean.atividade.computada}" onLabel="Sim"
+						offLabel="Não" />
+					<h:outputLabel value="Categoria*" for="categoria" />
+					<p:selectOneMenu value="#{atividadeBean.atividade.categoria}"
+						id="categoria" converter="categoriaConverter">
+						<f:selectItems value="#{atividadeBean.categorias}" var="categoria"
+							itemLabel="#{categoria.nome}" itemValue="#{categoria}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+
+				<h:commandButton class="btn btn-lg btn-primary btn-block"
+					value="Confirmar" action="#{atividadeBean.adicionarAtividade}" />
+
+			</h:form>
+
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>

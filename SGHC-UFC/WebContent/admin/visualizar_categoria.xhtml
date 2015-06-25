@@ -1,0 +1,39 @@
+<ui:composition template="/WEB-INF/template_admin/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="main">
+		<p:growl id="growl" showDetail="false" sticky="true" />
+		<div class="panel panel-default">
+			<div class="panel-heading">Editar Categoria</div>
+
+			<h:form id="form_adicionar_categoria">
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Nome" for="nome" />
+					<h:inputText class="form-control"
+						value="#{categoriaBean.categoria.nome}" id="nome" required="true"
+						requiredMessage="Insira o nome do curso!" />
+					<h:outputLabel value="Quantidade Máxima de Horas*" for="horas" />
+					<h:inputText class="form-control"
+						value="#{categoriaBean.categoria.maximoHoras}" id="horas"
+						required="true"
+						requiredMessage="Insira a quantidade máxima de horas da categoria"
+						converterMessage="Valor inválido para o campo 'Horas'!" />
+				</h:panelGrid>
+
+				<h:inputHidden value="#{categoriaBean.categoria.id}" />
+				<h:commandButton class="btn btn-lg btn-primary btn-block"
+					value="Confirmar" action="#{categoriaBean.atualizarCategoria}" />
+
+			</h:form>
+
+		</div>
+
+	</ui:define>
+</ui:composition>

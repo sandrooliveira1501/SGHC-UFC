@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<meta name="description"
+		content="Sistema de Gestão de Horas Complementares" />
+	<meta name="author" content="Alexsandro" />
+
+	<!-- Bootstrap -->
+	<h:outputStylesheet name="bootstrap.css" library="css" />
+	<!-- css do login -->
+	<h:outputStylesheet name="signin.css" library="css" />
+
+	<title>Login</title>
+</h:head>
+<h:body>
+
+	<div class="container">
+
+		<p:growl id="growl" showDetail="false" sticky="true" />  
+		<h:form class="form-signin">
+			<h2 class="form-signin-heading">Seção Administrativa</h2>
+		
+			<h:outputLabel value="Login" for="login" />
+			<h:inputText class="form-control" value="#{loginAdministradorBean.administrador.login}" 
+			id="login" required="true" requiredMessage="Insira seu login">
+			</h:inputText>
+			<h:outputLabel value="Senha" for="senha" />
+			<h:inputSecret class="form-control" value="#{loginAdministradorBean.administrador.senha}" id="senha" required="true" requiredMessage="Insira sua senha" />
+			<hr />
+			<h:commandButton class="btn btn-lg btn-primary btn-block" value="Entrar" action="#{loginAdministradorBean.realizarLogin}" />
+						
+		</h:form>
+
+	</div>
+
+</h:body>
+</html>

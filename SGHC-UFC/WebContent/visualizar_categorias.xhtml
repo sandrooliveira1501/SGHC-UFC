@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt_BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sistema de Gestão de Horas Complementares</title>
+
+<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+<link href="resources/css/index_style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="header clearfix">
+			<nav>
+				<ul class="nav nav-pills pull-right">
+					<li role="presentation" class="active"><a href="index.xhtml">Início</a></li>
+					<li role="presentation" class="active"><a href="login.xhtml">Login</a></li>
+				</ul>
+			</nav>
+			<h3 class="text-muted">SGHC-UFC</h3>
+		</div>
+
+		<div class="row marketing">
+			<div class="col-lg-12">
+				<h1>#{categoriaCursoBean.curso.nome}</h1>
+				
+				<c:if test="#{empty categoriaCursoBean.categorias}">
+					<p>Não há categorias vinculadas ao curso 
+					</p>
+				</c:if>
+				
+				<c:if test="#{not empty categoriaCursoBean.categorias}">
+						
+					<h:dataTable class="table" value="#{categoriaCursoBean.categorias}"
+						var="categoria">
+	
+						<h:column>
+							<f:facet name="header">Categoria</f:facet>
+						#{categoria.nome}
+					</h:column>
+	
+	
+						<h:column>
+							<f:facet name="header">Máximo de Horas</f:facet>
+						#{categoria.maximoHoras}
+					</h:column>
+	
+					</h:dataTable>
+				</c:if>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+#atualizar_perfil table {
+	width: 70%;
+}
+
+#atualizar_perfil>.btn {
+	width: 30%;
+}
+
+#form_editar_atividade>.btn {
+	width: 30%;
+}
+
+#form_editar_atividade table {
+	width: 70%;
+}
+
+.nome_curso {
+	font-weight: bold;
+}
+
+#form_pesquisa .form-control {
+	width: 300px;
+}
+
+.nome_categoria {
+	font-weight: bold;
+}

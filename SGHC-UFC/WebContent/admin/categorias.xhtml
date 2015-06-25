@@ -1,0 +1,94 @@
+<ui:composition template="/WEB-INF/template_admin/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:define name="main">
+		<p:growl id="growl" showDetail="false" sticky="true" />
+		<div class="panel panel-default">
+			<div class="panel-heading">Categorias</div>
+
+			<c:if test="#{not empty categoriaBean.categorias}">
+				<h:dataTable class="table" var="categoria"
+					value="#{categoriaBean.categorias}">
+	
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
+	    				#{categoria.nome}
+	    		</h:column>
+	
+					<h:column>
+						<f:facet name="header">Quantidade Máxima de Horas</f:facet>
+	    				#{categoria.maximoHoras}
+	    		</h:column>
+	
+					<h:column>
+						<f:facet name="header">Remover</f:facet>
+	
+						<h:form>
+	
+							<h:commandLink action="#{categoriaBean.removerCategoria}" value=""
+								class="glyphicon glyphicon-remove btn_remover">
+								<f:param value="#{categoria.id}" name="idCategoria" />
+							</h:commandLink>
+	
+						</h:form>
+	
+					</h:column>
+	
+					<h:column>
+						<f:facet name="header">Editar</f:facet>
+	
+						<h:form>
+	
+							<h:commandLink action="#{categoriaBean.visualizarCategoria}" value=""
+								class="glyphicon glyphicon-pencil">
+								<f:param value="#{categoria.id}" name="idCategoria" />
+							</h:commandLink>
+	
+						</h:form>
+	
+					</h:column>
+		
+				</h:dataTable>
+			</c:if>
+
+			<c:if test="#{empty categoriaBean.categorias}">
+				<h6>Nenhuma categoria cadastrado</h6>
+			</c:if>
+		</div>
+
+		<a class="btn btn-primary" id="button_adicionar_categoria">Adicionar
+			Categoria</a>
+
+		<p:dialog id="dialog_adicionar_categoria" header="Adicionar Categoria"
+			widgetVar="dlg_adicionar_categoria" resizable="false">
+
+			<h:form id="form_adicionar_categoria">
+
+				<h:panelGrid columns="2">
+
+					<h:outputLabel value="Nome" for="nome" />
+					<h:inputText class="form-control"
+						value="#{categoriaBean.categoria.nome}" id="nome" required="true"
+						requiredMessage="Insira o nome do curso!" />
+					<h:outputLabel value="Quantidade Máxima de Horas*" for="horas" />
+					<h:inputText class="form-control"
+						value="#{categoriaBean.categoria.maximoHoras}" id="horas"
+						required="true"
+						requiredMessage="Insira a quantidade máxima de horas da categoria"
+						converterMessage="Valor inválido para o campo 'Horas'!" />
+				</h:panelGrid>
+
+				<h:commandButton class="btn btn-lg btn-primary btn-block"
+					value="Confirmar" action="#{categoriaBean.adicionarCategoria}" />
+
+			</h:form>
+
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>

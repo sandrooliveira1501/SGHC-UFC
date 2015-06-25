@@ -1,0 +1,40 @@
+
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="main">
+
+		<h3>Sessão de arquivos</h3>
+
+		<h:form>
+			<h:dataTable value="#{arquivoBean.caminho}" var="arquivo">
+
+				<h:column>
+					<h:commandLink value="#{arquivo}"
+						action="#{arquivoBean.prepararLeitura}">
+						<f:param name="path" value="#{arquivo}" />
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+
+		<h3>Seus certificados de atividades</h3>
+		<span class="label label-default">Obs: clique nos links para abrir os arquivos</span>
+		<h:form>
+			<h:dataTable value="#{arquivoBean.listAtividades}" var="atividade">
+
+				<h:column>
+					<h:commandLink target="_blank" value="#{atividade.descricao}" action="#{arquivoBean.visualizarArquivo}" >
+						<f:param value="#{atividade.id}" name="idAtividade" />
+					</h:commandLink>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+		
+
+	</ui:define>
+</ui:composition>
