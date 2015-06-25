@@ -48,7 +48,9 @@
 				<p:column headerText="Remover">
 					<h:form>
 						<h:commandLink action="#{pesquisaBean.removerAtividade}"
-							class="glyphicon glyphicon-remove btn_remover">
+							class="glyphicon glyphicon-remove btn_remover"
+							onclick="return confirm('Deseja realmente remover esta atividade?')"
+							>
 							<f:param value="#{atividade.id}" name="idAtividade" />
 						</h:commandLink>
 					</h:form>

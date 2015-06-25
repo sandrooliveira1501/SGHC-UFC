@@ -31,7 +31,8 @@
 						<h:form>
 
 							<h:commandLink action="#{cursoBean.removerCurso}" value=""
-								class="glyphicon glyphicon-remove btn_remover">
+								class="glyphicon glyphicon-remove btn_remover"
+								onclick="return confirm('Deseja realmente remover este Curso?')">
 								<f:param value="#{curso.id}" name="idCurso" />
 							</h:commandLink>
 

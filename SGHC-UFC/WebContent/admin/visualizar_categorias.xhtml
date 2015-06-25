@@ -31,7 +31,9 @@
 						<h:form>
 	
 							<h:commandLink action="#{categoriaCursoBean.removerCategoria}" value=""
-								class="glyphicon glyphicon-remove btn_remover">
+								class="glyphicon glyphicon-remove btn_remover"
+								onclick="return confirm('Deseja realmente remover esta categoria?')"
+								>
 								<f:param value="#{categoria.id}" name="idCategoria" />
 								<f:param value="#{categoriaCursoBean.curso.id}" name="idCurso" />
 							</h:commandLink>
