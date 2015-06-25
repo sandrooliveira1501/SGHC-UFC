@@ -4,8 +4,12 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
 	<persistence-unit name="dev" transaction-type="RESOURCE_LOCAL">
-		<class>br.ufc.sghc.database.modelo.Aluno</class>
-		<class>br.ufc.sghc.database.modelo.Atividade</class>
+		<class>br.ufc.sghc.modelo.Administrador</class>
+		<class>br.ufc.sghc.modelo.Curso</class>
+		<class>br.ufc.sghc.modelo.Categoria</class>
+		<class>br.ufc.sghc.modelo.CategoriaCurso</class>
+		<class>br.ufc.sghc.modelo.Aluno</class>
+		<class>br.ufc.sghc.modelo.Atividade</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
