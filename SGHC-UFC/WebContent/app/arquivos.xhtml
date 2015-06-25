@@ -4,7 +4,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
 	<ui:define name="main">
 
 		<h3>Sessão de arquivos</h3>
@@ -23,6 +24,10 @@
 
 		<h3>Seus certificados de atividades</h3>
 		<span class="label label-default">Obs: clique nos links para abrir os arquivos</span>
+		
+		<c:if test="#{empty arquivoBean.listAtividades}">
+			<p>Não existem certificados submetidos.</p>
+		</c:if>
 		<h:form>
 			<h:dataTable value="#{arquivoBean.listAtividades}" var="atividade">
 
