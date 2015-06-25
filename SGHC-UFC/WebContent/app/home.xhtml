@@ -45,6 +45,10 @@
 				<p:column headerText="Horas">
 					<h:outputText value="#{atividade.horas}" />
 				</p:column>
+				
+				<p:column headerText="Submetida">
+					<h:outputText value="#{atividade.computada ? 'Sim' : 'Não'}" />
+				</p:column>
 				<p:column headerText="Remover">
 					<h:form>
 						<h:commandLink action="#{pesquisaBean.removerAtividade}"
@@ -124,7 +128,7 @@
 						requiredMessage="Insira a data da atividade" converterMessage="Data inválida">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</p:inputMask>
-					<h:outputLabel value="Computada*" for="computada" />
+					<h:outputLabel value="Submetida*" for="computada" />
 					<p:selectBooleanButton id="computada"
 						value="#{atividadeBean.atividade.computada}" onLabel="Sim"
 						offLabel="Não" />
