@@ -1,4 +1,4 @@
-package br.ufc.sghc.database.modelo;
+package br.ufc.sghc.modelo;
 
 import java.io.Serializable;
 import java.util.Date;

@@ -14,7 +14,7 @@ import org.hibernate.exception.ConstraintViolationException;
 
 import br.ufc.sghc.database.dao.CursoDAO;
 import br.ufc.sghc.database.dao.CursoJPADAO;
-import br.ufc.sghc.database.modelo.Curso;
+import br.ufc.sghc.modelo.Curso;
 
 @ManagedBean(name = "cursoBean")
 public class CursoBean {

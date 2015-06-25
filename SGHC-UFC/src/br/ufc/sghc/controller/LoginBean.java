@@ -10,8 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import br.ufc.sghc.database.dao.AlunoDAO;
 import br.ufc.sghc.database.dao.AlunoJPADAO;
-import br.ufc.sghc.database.modelo.Aluno;
 import br.ufc.sghc.exceptions.ErroLoginException;
+import br.ufc.sghc.modelo.Aluno;
 import br.ufc.sghc.util.CriptoSenha;
 
 @ViewScoped

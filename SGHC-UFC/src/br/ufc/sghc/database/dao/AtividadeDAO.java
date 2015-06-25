@@ -2,9 +2,9 @@ package br.ufc.sghc.database.dao;
 
 import java.util.List;
 
-import br.ufc.sghc.database.modelo.Aluno;
-import br.ufc.sghc.database.modelo.Atividade;
-import br.ufc.sghc.database.modelo.Categoria;
+import br.ufc.sghc.modelo.Aluno;
+import br.ufc.sghc.modelo.Atividade;
+import br.ufc.sghc.modelo.Categoria;
 
 public interface AtividadeDAO extends GenericDAO<Atividade>{
 	

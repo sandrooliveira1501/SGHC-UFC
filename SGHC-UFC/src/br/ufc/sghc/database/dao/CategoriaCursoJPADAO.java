@@ -6,9 +6,9 @@ import java.util.List;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import br.ufc.sghc.database.modelo.Categoria;
-import br.ufc.sghc.database.modelo.CategoriaCurso;
-import br.ufc.sghc.database.modelo.Curso;
+import br.ufc.sghc.modelo.Categoria;
+import br.ufc.sghc.modelo.CategoriaCurso;
+import br.ufc.sghc.modelo.Curso;
 
 public class CategoriaCursoJPADAO extends GenericJPADAO<CategoriaCurso>
 		implements CategoriaCursoDAO {

@@ -25,8 +25,8 @@ import org.primefaces.model.UploadedFile;
 
 import br.ufc.sghc.database.dao.AtividadeDAO;
 import br.ufc.sghc.database.dao.AtividadeJPADAO;
-import br.ufc.sghc.database.modelo.Aluno;
-import br.ufc.sghc.database.modelo.Atividade;
+import br.ufc.sghc.modelo.Aluno;
+import br.ufc.sghc.modelo.Atividade;
 
 @ViewScoped
 @ManagedBean(name = "arquivoBean")

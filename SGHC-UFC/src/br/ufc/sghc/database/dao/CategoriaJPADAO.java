@@ -2,7 +2,7 @@ package br.ufc.sghc.database.dao;
 
 import javax.persistence.Query;
 
-import br.ufc.sghc.database.modelo.Categoria;
+import br.ufc.sghc.modelo.Categoria;
 
 public class CategoriaJPADAO extends GenericJPADAO<Categoria> implements
 		CategoriaDAO {

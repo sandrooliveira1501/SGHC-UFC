@@ -2,7 +2,7 @@ package br.ufc.sghc.database.dao;
 
 import javax.persistence.Query;
 
-import br.ufc.sghc.database.modelo.Curso;
+import br.ufc.sghc.modelo.Curso;
 
 public class CursoJPADAO extends GenericJPADAO<Curso> implements CursoDAO{
 

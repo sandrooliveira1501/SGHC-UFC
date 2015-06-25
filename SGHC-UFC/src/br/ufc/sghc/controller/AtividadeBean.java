@@ -18,9 +18,9 @@ import br.ufc.sghc.database.dao.AtividadeDAO;
 import br.ufc.sghc.database.dao.AtividadeJPADAO;
 import br.ufc.sghc.database.dao.CategoriaCursoDAO;
 import br.ufc.sghc.database.dao.CategoriaCursoJPADAO;
-import br.ufc.sghc.database.modelo.Aluno;
-import br.ufc.sghc.database.modelo.Atividade;
-import br.ufc.sghc.database.modelo.Categoria;
+import br.ufc.sghc.modelo.Aluno;
+import br.ufc.sghc.modelo.Atividade;
+import br.ufc.sghc.modelo.Categoria;
 
 @RequestScoped
 @ManagedBean

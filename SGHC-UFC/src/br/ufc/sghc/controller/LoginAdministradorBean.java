@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import br.ufc.sghc.database.dao.AdministradorDAO;
 import br.ufc.sghc.database.dao.AdministradorJPADAO;
-import br.ufc.sghc.database.modelo.Administrador;
 import br.ufc.sghc.exceptions.ErroLoginException;
+import br.ufc.sghc.modelo.Administrador;
 import br.ufc.sghc.util.CriptoSenha;
 
 @ViewScoped

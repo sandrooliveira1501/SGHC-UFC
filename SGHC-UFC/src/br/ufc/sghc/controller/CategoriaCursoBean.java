@@ -14,8 +14,8 @@ import br.ufc.sghc.database.dao.CategoriaCursoDAO;
 import br.ufc.sghc.database.dao.CategoriaCursoJPADAO;
 import br.ufc.sghc.database.dao.CursoDAO;
 import br.ufc.sghc.database.dao.CursoJPADAO;
-import br.ufc.sghc.database.modelo.Categoria;
-import br.ufc.sghc.database.modelo.Curso;
+import br.ufc.sghc.modelo.Categoria;
+import br.ufc.sghc.modelo.Curso;
 
 @SessionScoped
 @ManagedBean(name = "categoriaCursoBean")

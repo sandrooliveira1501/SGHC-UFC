@@ -15,10 +15,10 @@ import br.ufc.sghc.database.dao.AlunoDAO;
 import br.ufc.sghc.database.dao.AlunoJPADAO;
 import br.ufc.sghc.database.dao.CursoDAO;
 import br.ufc.sghc.database.dao.CursoJPADAO;
-import br.ufc.sghc.database.modelo.Aluno;
-import br.ufc.sghc.database.modelo.Atividade;
-import br.ufc.sghc.database.modelo.Curso;
 import br.ufc.sghc.exceptions.ErroLoginException;
+import br.ufc.sghc.modelo.Aluno;
+import br.ufc.sghc.modelo.Atividade;
+import br.ufc.sghc.modelo.Curso;
 import br.ufc.sghc.util.CriptoSenha;
 
 @ManagedBean(name = "alunoBean")

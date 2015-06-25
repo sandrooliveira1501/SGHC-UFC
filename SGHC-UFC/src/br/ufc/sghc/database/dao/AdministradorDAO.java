@@ -1,6 +1,6 @@
 package br.ufc.sghc.database.dao;
 
-import br.ufc.sghc.database.modelo.Administrador;
+import br.ufc.sghc.modelo.Administrador;
 
 public interface AdministradorDAO extends GenericDAO<Administrador>{
 

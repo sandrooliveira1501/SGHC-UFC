@@ -3,8 +3,8 @@ package br.ufc.sghc.database.dao;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import br.ufc.sghc.database.modelo.Aluno;
 import br.ufc.sghc.exceptions.ErroLoginException;
+import br.ufc.sghc.modelo.Aluno;
 
 public class AlunoJPADAO extends GenericJPADAO<Aluno> implements AlunoDAO {
 

@@ -2,9 +2,9 @@ package br.ufc.sghc.database.dao;
 
 import java.util.List;
 
-import br.ufc.sghc.database.modelo.Categoria;
-import br.ufc.sghc.database.modelo.CategoriaCurso;
-import br.ufc.sghc.database.modelo.Curso;
+import br.ufc.sghc.modelo.Categoria;
+import br.ufc.sghc.modelo.CategoriaCurso;
+import br.ufc.sghc.modelo.Curso;
 
 public interface CategoriaCursoDAO extends GenericDAO<CategoriaCurso>{
 

@@ -3,8 +3,8 @@ package br.ufc.sghc.database.dao;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import br.ufc.sghc.database.modelo.Administrador;
 import br.ufc.sghc.exceptions.ErroLoginException;
+import br.ufc.sghc.modelo.Administrador;
 
 public class AdministradorJPADAO extends GenericJPADAO<Administrador> implements AdministradorDAO{
 

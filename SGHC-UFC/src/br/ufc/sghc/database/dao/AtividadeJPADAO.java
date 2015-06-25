@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import br.ufc.sghc.database.modelo.Aluno;
-import br.ufc.sghc.database.modelo.Atividade;
-import br.ufc.sghc.database.modelo.Categoria;
+import br.ufc.sghc.modelo.Aluno;
+import br.ufc.sghc.modelo.Atividade;
+import br.ufc.sghc.modelo.Categoria;
 
 public class AtividadeJPADAO extends GenericJPADAO<Atividade> implements
 		AtividadeDAO {

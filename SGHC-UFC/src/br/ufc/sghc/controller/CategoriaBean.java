@@ -15,7 +15,7 @@ import br.ufc.sghc.database.dao.CategoriaDAO;
 import br.ufc.sghc.database.dao.CategoriaJPADAO;
 import br.ufc.sghc.database.dao.CursoDAO;
 import br.ufc.sghc.database.dao.CursoJPADAO;
-import br.ufc.sghc.database.modelo.Categoria;
+import br.ufc.sghc.modelo.Categoria;
 
 @ManagedBean(name = "categoriaBean")
 public class CategoriaBean {

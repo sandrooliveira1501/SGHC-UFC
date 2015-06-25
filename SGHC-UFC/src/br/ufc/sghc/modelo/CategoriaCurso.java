@@ -1,4 +1,4 @@
-package br.ufc.sghc.database.modelo;
+package br.ufc.sghc.modelo;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

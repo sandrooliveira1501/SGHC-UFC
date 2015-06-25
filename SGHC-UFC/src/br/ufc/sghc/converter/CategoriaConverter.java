@@ -6,7 +6,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import br.ufc.sghc.database.modelo.Categoria;
+import br.ufc.sghc.modelo.Categoria;
 import br.ufc.sghc.util.JPAUtil;
 
 @FacesConverter(value="categoriaConverter",forClass = Categoria.class)
