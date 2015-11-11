@@ -23,7 +23,6 @@ import br.ufc.sghc.util.CriptoSenha;
 
 @ManagedBean(name = "alunoBean")
 public class AlunoBean implements Serializable {
-
 	private static final long serialVersionUID = -4088840626925102735L;
 	private Aluno aluno;
 	private String novaSenha;
